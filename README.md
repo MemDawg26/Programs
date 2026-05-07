@@ -11,7 +11,7 @@ especially in regard to AI. However, this project has been fun to work on. I cer
 learned a lot since starting it, and I honestly feel much more confident in developing this type
 of model.
 
-## Why Multinomial Naive Bayes - Example (Needs Editing - Math wrong)
+## Why Multinomial Naive Bayes - Example
 From my research on the internet and YouTube, there are three main types of Naive Bayes.
 Multinomial just happens to be specialized for count-based data (e.g. word count). This means the
 model essentially keeps track of the number of times a singular word exists within a particular
@@ -46,7 +46,7 @@ says that, obviously, this would be from a spam email. But the computer does not
 intuition as us. Instead, Naïve Bayes uses these probabilities to make a best-guess for classifying
 the email. Here is the math:
 
-P(0|new_email) = P(0) * P(money|0) * P(link|0) * P(click|0) = 0.00001608 
+P(0|new_email) = P(0) * P(money|0) * P(link|0) * P(click|0) = 0.00001608  
 P(1|new_email) = P(1) * P(money|1) * P(link|1) * P(click|1) = 0.00139650
 
 As we can see, given this new email, the probability that we have a spam is higher than the probability

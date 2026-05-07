@@ -116,7 +116,11 @@ Accuracy: 0.9794520547945206
     weighted avg       0.98      0.98      0.98     16498
 
 As we can see, there was very slight improvement in accuracy on train2.py. While it may not make much of
-a difference, I opted to use this model for scam_app.py, which we will now get into.
+a difference, I opted to use this model for scam_app.py, which we will get into in a second. But firs, it
+must be said that this model, obviously, is not perfect. This is has become especially apparent as I copy
+and paste emails from my junk mail into the testing application. A job that is being advertised as earning
+you $450 per for 1-3 hours of work should raise flags for anyone, but the model does not see that because
+it is influenced by more powerful words. 
 
 ## Building spam_app.py
 You may have noticed in both train.py and train2.py that there is a section of code at the bottom that

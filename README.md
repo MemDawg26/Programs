@@ -29,7 +29,7 @@ and P(link|0) = 3/15 = 0.20. Ok, we now have some data to work with...
 
 So we know that we have 25 emails total. Thus we have probabilities P(0) = 15/25 = 0.6 and P(1) = 
 10/25 = 0.40. While this is not the best real-life example, let's say you receive an email that
-only contains "money link". You now need to determine wether this email is spam or ham. To do so,
+only contains "money link". You now need to determine whether this email is spam or ham. To do so,
 lets first calculate the overall probabilities for the different classifications:
 
 P(1|email) = P(1) * P(money|1) * P(link|1) = 0.4 * 0.7 * 0.8 = 0.224  

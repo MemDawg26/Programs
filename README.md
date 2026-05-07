@@ -1,3 +1,3 @@
 # Repository Topology - Programs
 Main
-- Naive Bayes Email Spam Filter
+- Naive Bayes Email Spam Detector

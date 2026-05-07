@@ -34,7 +34,7 @@ Let's consider some training data. We have:
 
 We have a few probabilities we can contstruct with these values. First, we can find P(0) and P(1)  
 That is, the probability that an email is normal and the probability that it is a scam:  
-P(0) = 300/500 = 0.60;  P(1) = 200/500 = 0.40
+P(0) = 15/25 = 0.60;  P(1) = 10/25 = 0.40
 
 Then, we can find values P(money | 0), P(money | 1), P(link | 0), P(link | 1), P(click | 0), and P(click | 1):  
 P(money | 0) = 20/300 = 0.067    P(link | 0) = 12/300 = 0.04    P(click | 0) = 30/300 = 0.01  

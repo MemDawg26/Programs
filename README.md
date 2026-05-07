@@ -18,24 +18,38 @@ model essentially keeps track of the number of times a singular word exists with
 classification. Then it creates a probability P(word|label). In the context of spam filtering,
 our label is binary -> 1 or 0. 1 is for Spam (and phishing) and 0 is for normal (or 'Ham'). So,
 if we have P(money|1), this is essentially read as, "Given that we have a spam email, the
-likelihood that the word is "money". Let's consider some training data. If we have 10 spam 
-emails, and "money" shows up 7 times in those emails, the P(money|1) = 7/10, or 0.70.
+likelihood that the word is "money". 
 
-To add on, lets consider another example. We will still have our 10 emails with P(money|1) = 0.70,
-but now we have 15 ham emails. In those emails, lets say that "money" shows up 5 times. Then,
-our probability P(money|0) = 5/15 = 0.33. Now, let's look at another word - "link". Let's say 
-"link" shows up 8 times in the spam emails and 3 times in the ham emails. P(link|1) = 8/10 = 0.80,
-and P(link|0) = 3/15 = 0.20. Ok, we now have some data to work with...
+Let's consider some training data. We have:
+ - 10 Spam emails:
+    - 200 words
+    - "money" appears 35 times
+    - "link" appears 30 times
+    - "click" appears 40 times
+ - 15 Ham emails:
+    - 300 words
+    - "money" appears 20 times
+    - "link" appears 12 times
+    - "click" appears 30 times 
 
-So we know that we have 25 emails total. Thus we have probabilities P(0) = 15/25 = 0.6 and P(1) = 
-10/25 = 0.40. While this is not the best real-life example, let's say you receive an email that
-only contains "money link". You now need to determine whether this email is spam or ham. To do so,
-lets first calculate the overall probabilities for the different classifications:
+We have a few probabilities we can contstruct with these values. First, we can find P(0) and P(1)  
+That is, the probability that an email is normal and the probability that it is a scam:  
+P(0) = 300/500 = 0.60;  P(1) = 200/500 = 0.40
 
-P(1|email) = P(1) * P(money|1) * P(link|1) = 0.4 * 0.7 * 0.8 = 0.224  
-P(0|email) = P(0) * P(money|0) * P(link|0) = 0.6 * 0.33 * 0.2 = 0.040
+Then, we can find values P(money | 0), P(money | 1), P(link | 0), P(link | 1), P(click | 0), and P(click | 1):  
+P(money | 0) = 20/300 = 0.067    P(link | 0) = 12/300 = 0.04    P(click | 0) = 30/300 = 0.01  
+P(money | 1) = 35/200 = 0.175    P(link | 1) = 30/200 = 0.15    P(click | 1) = 40/200 = 0.133  
 
-As we can See, the probability that given this email, we have a spam is higher than the probability
+Now, this is not a great real-world example, but imagine you get an email that only says "click
+money link". You need to determine whether or not this is a spam email or ham email. Our intuition
+says that, obviously, this would be from a spam email. But the computer does not have the same
+intuition as us. Instead, Naïve Bayes uses these probabilities to make a best-guess for classifying
+the email. Here is the math:
+
+P(0|new_email) = P(0) * P(money|0) * P(link|0) * P(click|0) = 0.00001608 
+P(1|new_email) = P(1) * P(money|1) * P(link|1) * P(click|1) = 0.00139650
+
+As we can see, given this new email, the probability that we have a spam is higher than the probability
 that we have a ham. This is how Multinomial Naive Bayes uses word count and probabilities from the
 training data to determine the classification of an email.
 

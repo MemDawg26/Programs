@@ -91,7 +91,7 @@ detailed enough to somewhat provide an explanation for each step.
 ## Training and Testing Results
 ### Here is the classification report for train2.py:  
 
-Accuracy: 0.9786034670869196
+Accuracy: 0.9786034670869196  
 Classification Report:
 
                   precision    recall  f1-score   support
@@ -105,7 +105,7 @@ Classification Report:
 
 ### And for train2.py:  
 
-Accuracy: 0.9794520547945206
+Accuracy: 0.9794520547945206  
 Classification Report:
 
                   precision    recall  f1-score   support

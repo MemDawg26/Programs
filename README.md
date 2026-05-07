@@ -72,7 +72,7 @@ mistake of using all seven files the first time I programmed this, and it severe
 accuracy of my model (75%).
 
 ### Code
-Now, my code for this train.py is just about the exact same as Tyner's code for Logical Regression.
+Now, my code for this train.py is just about the exact same as Tyner's code for Logistic Regression.
 The only difference is that we call a different model function, so I felt like I ought to do things a
 little bit differently. Thats what train2.py is.
 

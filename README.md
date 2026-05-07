@@ -37,7 +37,7 @@ That is, the probability that an email is normal and the probability that it is 
 P(0) = 15/25 = 0.60;  P(1) = 10/25 = 0.40
 
 Then, we can find values P(money | 0), P(money | 1), P(link | 0), P(link | 1), P(click | 0), and P(click | 1):  
-P(money | 0) = 20/300 = 0.067    P(link | 0) = 12/300 = 0.04    P(click | 0) = 30/300 = 0.01  
+P(money | 0) = 20/300 = 0.067    P(link | 0) = 12/300 = 0.04    P(click | 0) = 30/300 = 0.10  
 P(money | 1) = 35/200 = 0.175    P(link | 1) = 30/200 = 0.15    P(click | 1) = 40/200 = 0.133  
 
 Now, this is not a great real-world example, but imagine you get an email that only says "click
@@ -46,7 +46,7 @@ says that, obviously, this would be from a spam email. But the computer does not
 intuition as us. Instead, Naïve Bayes uses these probabilities to make a best-guess for classifying
 the email. Here is the math:
 
-P(0|new_email) = P(0) * P(money|0) * P(link|0) * P(click|0) = 0.00001608  
+P(0|new_email) = P(0) * P(money|0) * P(link|0) * P(click|0) = 0.00016080  
 P(1|new_email) = P(1) * P(money|1) * P(link|1) * P(click|1) = 0.00139650
 
 As we can see, given this new email, the probability that we have a spam is higher than the probability

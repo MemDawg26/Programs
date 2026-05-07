@@ -130,7 +130,7 @@ Accuracy: 0.9794520547945206
     weighted avg       0.98      0.98      0.98     16498
 
 As we can see, there was very slight improvement in accuracy on train2.py. While it may not make much of
-a difference, I opted to use this model for scam_app.py, which we will get into in a second. But firs, it
+a difference, I opted to use this model for scam_app.py, which we will get into in a second. But first, it
 must be said that this model, obviously, is not perfect. This is has become especially apparent as I copy
 and paste emails from my junk mail into the testing application. A job that is being advertised as earning
 you $450 per for 1-3 hours of work should raise flags for anyone, but the model does not see that because
@@ -149,8 +149,8 @@ code at the bottom of train.py/train2.py stores the model and vectorization stat
 file (spam_app.py) to load in the already trained model. Now, it takes maybe 5-10 seconds to load in the 
 model and start taking input. My spam_app.py takes in a sender's email, a subject line, and a body, sticks
 it together and analyzes based on the training data. Note that when you put the data together to make a
-prediction, it must be in the same format. So if in the training you had sender, subject, body, and url,
-your vector in the new file must also collect the same information.
+prediction, it must be in the same format that it was for training. So if in the training you had sender,
+subject, body, and url, your vector in the new file must also collect the same information.
 
 ## Future Project
 My next plan is to work on a web-based GUI for the spam_app. While I don't mind running in terminal, I think

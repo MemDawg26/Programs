@@ -94,13 +94,13 @@ detailed enough to somewhat provide an explanation for each step.
 Accuracy: 0.9786034670869196
 Classification Report:
 
-              precision    recall  f1-score   support
+                  precision    recall  f1-score   support
 
-           0       0.97      0.99      0.98      7935
-           1       0.99      0.97      0.98      8563
+              0        0.97      0.99      0.98      7935
+              1        0.99      0.97      0.98      8563
 
-    accuracy                           0.98     16498
-    macro avg       0.98      0.98      0.98     16498
+        accuracy                           0.98     16498
+       macro avg       0.98      0.98      0.98     16498
     weighted avg       0.98      0.98      0.98     16498
 
 ### And for train2.py:  
@@ -108,13 +108,13 @@ Classification Report:
 Accuracy: 0.9794520547945206
 Classification Report:
 
-              precision    recall  f1-score   support
+                  precision    recall  f1-score   support
 
-           0       0.97      0.99      0.98      7897
-           1       0.99      0.97      0.98      8601
+               0       0.97      0.99      0.98      7897
+               1       0.99      0.97      0.98      8601
 
-    accuracy                           0.98     16498
-    macro avg       0.98      0.98      0.98     16498
+        accuracy                           0.98     16498
+       macro avg       0.98      0.98      0.98     16498
     weighted avg       0.98      0.98      0.98     16498
 
 As we can see, there was very slight improvement on train2.py.

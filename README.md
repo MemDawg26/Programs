@@ -64,7 +64,7 @@ little bit differently. Thats what train2.py is.
 
 The main differences between train and train2 is that train2:  
 - uses six files instead of just the phishing_email.csv
-- does not use the custom clean function and instead replaces all NaN's with ""
+- does not use the custom clean function and instead replaces all NaN's with "" (empty strings)
 #### *Important note about MultinomialNB from scikit: You can not have NaN
 So, in train.py, you see that this is not something we really have to worry about, but we do clean the
 data with a clean funciton. In train2.py, I took a different approach and instead, for each attribute,

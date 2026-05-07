@@ -40,7 +40,7 @@ that we have a ham. This is how Multinomial Naive Bayes uses word count and prob
 training data to determine the classification of an email.
 
 ## Building the Model (train.py)
-### - Gathering Data
+### Gathering Data
 The first thing we need before we start building the model is data. It does not have to be "great"
 data, but it does need to be good. Tyner found a pretty solid dataset on Kaggle.com published by
 Naser Abdullah Alam. There are 7 files you could work with in this data set:
@@ -65,7 +65,7 @@ little bit differently. Thats what train2.py is.
 The main differences between train and train2 is that train2:  
 - uses six files instead of just the phishing_email.csv
 - does not use the custom clean function and instead replaces all NaN's with ""
-#### Important note about MultinomialNB from scikit: You can not have NaN
+#### *Important note about MultinomialNB from scikit: You can not have NaN
 So, in train.py, you see that this is not something we really have to worry about, but we do clean the
 data with a clean funciton. In train2.py, I took a different approach and instead, for each attribute,
 I filled all NaN positions with "".
@@ -76,3 +76,35 @@ sender, the subject, and the body. Date/time is also irrelevant, as you are not 
 to receive spam on any specific day. Though you could argue months like December or June may see more
 ads from department stores and sports + outdoors. Nonetheless, my model worked out fine enough without
 it. 
+
+So, for my train2.py, I only considered the sender, the subject, and the body. If you are using the
+phishing_email.csv file like in train.py, you don't really have to mess around too much with the data.
+You just create your vectors and plug them into the functions, quick and easy. You may notice some extra
+random code in my train.py. This is code I wrote to get very specific output for my AI class project. You
+can disregard, but it essentially shows the probabilities for the top 10 words associated with spam emails
+from this dataset. In short, the probability, logarithmic probability, and influence score are just a few
+different ways to visualize how particular words play a role in the model's decision making.
+
+Other than that, there is not too much to say about the model. Hopefully, my comments within the code are
+detailed enough to somewhat give an understanding of each step.
+
+## Building spam_app.py
+You may have noticed in both train.py and train2.py that there is a section of code at the bottom that
+appears to be writing to some files. Specifically, these are joblib files that store the states of the
+trained model and vectorization. Imagine after you trained your model, you wanted to deploy the model or 
+take user input to check your own emails for spam/phishing. Well, if you ran had to train the model every
+time you wanted to check an email, it would get tiresome having to wait a minute or two before you can even
+input anything.
+
+I wanted to be able to check my own emails for spam and not have to train the model over and over. So, the
+code at the bottom of train.py/train2.py stores the model and vectorization states. Then, I created a new 
+file (spam_app.py) to load in the already trained model. Now, it takes maybe 5-10 seconds to load in the 
+model and start taking input. My spam_app.py takes in a sender's email, a subject line, and a body, sticks
+it together and analyzes based on the training data.
+
+## Future Project
+My next plan is to work on a web-based GUI for the spam_app. While I don't mind running in terminal, I think
+having a GUI would just be a cool thing to show off. But more importantly, the whole point of Spam/Phishing
+detection is for filtering, which should be an automated process. So, if my skills get a little more
+sophisticated, I would like to try to deploy the model through an API, but that may not be something for a
+a while.

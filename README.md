@@ -11,7 +11,7 @@ especially in regard to AI. However, this project has been fun to work on. I cer
 learned a lot since starting it, and I honestly feel much more confident in developing this type
 of model.
 
-## Why Multinomial Naive Bayes - Example
+## Why Multinomial Naive Bayes - Example (Needs Editing - Math wrong)
 From my research on the internet and YouTube, there are three main types of Naive Bayes.
 Multinomial just happens to be specialized for count-based data (e.g. word count). This means the
 model essentially keeps track of the number of times a singular word exists within a particular

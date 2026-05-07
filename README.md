@@ -117,7 +117,8 @@ Classification Report:
        macro avg       0.98      0.98      0.98     16498
     weighted avg       0.98      0.98      0.98     16498
 
-As we can see, there was very slight improvement on train2.py.
+As we can see, there was very slight improvement in accuracy on train2.py. While it may not make much of
+a difference, I opted to use this model for scam_app.py, which we will now get into.
 
 ## Building spam_app.py
 You may have noticed in both train.py and train2.py that there is a section of code at the bottom that

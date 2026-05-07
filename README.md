@@ -65,34 +65,65 @@ little bit differently. Thats what train2.py is.
 The main differences between train and train2 is that train2:  
 - uses six files instead of just the phishing_email.csv
 - does not use the custom clean function and instead replaces all NaN's with "" (empty strings)
-#### *Important note about MultinomialNB from scikit: You can not have NaN
+#### *Important note about MultinomialNB from scikit: It does not accept NaN, so they have to go!
 So, in train.py, you see that this is not something we really have to worry about, but we do clean the
-data with a clean funciton. In train2.py, I took a different approach and instead, for each attribute,
-I filled all NaN positions with "".
+data with a clean function. In train2.py, I took a different approach and instead, for each attribute,
+I filled all NaN positions with empty strings.
 
 One thing I also found is that having a URL does not have much influence on the decision-making of the
 model, so I exclude it from the training data in train2.py. You should see that I only considered the
 sender, the subject, and the body. Date/time is also irrelevant, as you are not necessarily more likely
 to receive spam on any specific day. Though you could argue months like December or June may see more
 ads from department stores and sports + outdoors. Nonetheless, my model worked out fine enough without
-it. 
+it.
 
-So, for my train2.py, I only considered the sender, the subject, and the body. If you are using the
-phishing_email.csv file like in train.py, you don't really have to mess around too much with the data.
-You just create your vectors and plug them into the functions, quick and easy. You may notice some extra
-random code in my train.py. This is code I wrote to get very specific output for my AI class project. You
-can disregard, but it essentially shows the probabilities for the top 10 words associated with spam emails
-from this dataset. In short, the probability, logarithmic probability, and influence score are just a few
-different ways to visualize how particular words play a role in the model's decision making.
+If you are using the phishing_email.csv file like in train.py, you don't really have to mess around too
+much with the data. You just create your vectors and plug them into the functions, quick and easy. You
+may notice some extra random code in my train.py. This is code I wrote to get very specific output for my
+AI class project. You can disregard, but it essentially shows the probabilities for the top 10 words
+associated with spam emails from this dataset. In short, the probability, logarithmic probability, and
+influence score are just a few different ways to visualize how particular words play a role in the model's 
+decision making.
 
 Other than that, there is not too much to say about the model. Hopefully, my comments within the code are
-detailed enough to somewhat give an understanding of each step.
+detailed enough to somewhat provide an explanation for each step.
+
+## Training and Testing Results
+### Here is the classification report for train2.py:  
+
+Accuracy: 0.9786034670869196
+Classification Report:
+
+              precision    recall  f1-score   support
+
+           0       0.97      0.99      0.98      7935
+           1       0.99      0.97      0.98      8563
+
+    accuracy                           0.98     16498
+   macro avg       0.98      0.98      0.98     16498
+weighted avg       0.98      0.98      0.98     16498
+
+### And for train2.py:  
+
+Accuracy: 0.9794520547945206
+Classification Report:
+
+              precision    recall  f1-score   support
+
+           0       0.97      0.99      0.98      7897
+           1       0.99      0.97      0.98      8601
+
+    accuracy                           0.98     16498
+   macro avg       0.98      0.98      0.98     16498
+weighted avg       0.98      0.98      0.98     16498
+
+As we can see, there was very slight improvement on train2.py.
 
 ## Building spam_app.py
 You may have noticed in both train.py and train2.py that there is a section of code at the bottom that
 appears to be writing to some files. Specifically, these are joblib files that store the states of the
-trained model and vectorization. Imagine after you trained your model, you wanted to deploy the model or 
-take user input to check your own emails for spam/phishing. Well, if you ran had to train the model every
+trained model and vectorization. Imagine that after you trained your model, you wanted to deploy the model
+or take user input to check your own emails for spam/phishing. Well, if you had to train the model every
 time you wanted to check an email, it would get tiresome having to wait a minute or two before you can even
 input anything.
 
@@ -100,7 +131,9 @@ I wanted to be able to check my own emails for spam and not have to train the mo
 code at the bottom of train.py/train2.py stores the model and vectorization states. Then, I created a new 
 file (spam_app.py) to load in the already trained model. Now, it takes maybe 5-10 seconds to load in the 
 model and start taking input. My spam_app.py takes in a sender's email, a subject line, and a body, sticks
-it together and analyzes based on the training data.
+it together and analyzes based on the training data. Note that when you put the data together to make a
+prediction, it must be in the same format. So if in the training you had sender, subject, body, and url,
+your vector in the new file must also collect the same information.
 
 ## Future Project
 My next plan is to work on a web-based GUI for the spam_app. While I don't mind running in terminal, I think

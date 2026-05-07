@@ -1,12 +1,12 @@
 #import packages
-from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-import seaborn as sns
-import matplotlib.pyplot as plt
-import pandas as pd
-import re
+from sklearn.model_selection import train_test_split                                   #allows us to split our data for training and testing
+from sklearn.naive_bayes import MultinomialNB                                          #to call the Multinomial Naive Bayes model
+from sklearn.feature_extraction.text import TfidfVectorizer                            #allows us to create our feature vectors
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report    #for printing out test results
+import seaborn as sns                                                                  #used for confusion matrix color mapping
+import matplotlib.pyplot as plt                                                        #plots the confusion matrix
+import pandas as pd                                                                    #allows us to read the csv files
+import re                                                                              #used for replacing text with empty strings
 
 #import data file
 df = pd.read_csv("data/phishing_email.csv")
@@ -19,6 +19,7 @@ def clean_text(text):
   text = re.sub(r"[^\w\s]", "", text)
   return text
 
+#apply the cleaning
 df['text_combined'] = df['text_combined'].apply(clean_text)
 
 #vectorize the text_combines column, which contains all of the information 
@@ -31,21 +32,25 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 model = MultinomialNB(alpha=0.3)
 model.fit(X_train, y_train)
 
-#evaluate
+#evaluate test results
 y_pred = model.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("\nClassification Report:\n")
 print(classification_report(y_test, y_pred))
 
-import numpy as np
+import numpy as np  #used for generating probabilities, log probabilites
 
+#extracting the features
 feature_names = vectorizer.get_feature_names_out()
 
+#gathering list of probabilites
 ham_probs = model.feature_log_prob_[0]
 spam_probs = model.feature_log_prob_[1]
 
+#calculating the influence score
 influence = spam_probs - ham_probs
 
+#organizing datafram to print a chart
 df2 = pd.DataFrame({
     "word": feature_names,
     "ham_log_prob": ham_probs,
@@ -57,8 +62,8 @@ df2 = pd.DataFrame({
 
 print(df2.sort_values("influence_score", ascending=False).head(10))
 
+#create confusion matrix - visually displays how well the model classified
 cm = confusion_matrix(y_test, y_pred)
-
 plt.figure(figsize=(6,5))
 sns.heatmap(cm, annot=True, fmt='g', cmap='BuGn')
 plt.xlabel("Predicted")

@@ -53,5 +53,26 @@ Nigerian_Fraud.csv -> sender, receiver, date, subject, body, urls
 SpamAssasin.csv -> sender, receiver, date, subject, body, urls  
 phishing_email.csv -> combination of previous six files
 
-Either use the first six and exclude the last one, or use the last file on its own. I made that
-mistake the first time I programmed this, and it severely affected the accuracy of my model (75%).
+Either use the first six and exclude the last one, or use the last file on its own. I made the
+mistake of using all seven files the first time I programmed this, and it severely affected the 
+accuracy of my model (75%).
+
+### Code
+Now, my code for this train.py is just about the exact same as Tyner's code for Logical Regression.
+The only difference is that we call a different model function, so I felt like I ought to do things a
+little bit differently. Thats what train2.py is.
+
+The main differences between train and train2 is that train2:  
+- uses six files instead of just the phishing_email.csv
+- does not use the custom clean function and instead replaces all NaN's with ""
+#### Important note about MultinomialNB from scikit: You can not have NaN
+So, in train.py, you see that this is not something we really have to worry about, but we do clean the
+data with a clean funciton. In train2.py, I took a different approach and instead, for each attribute,
+I filled all NaN positions with "".
+
+One thing I also found is that having a URL does not have much influence on the decision-making of the
+model, so I exclude it from the training data in train2.py. You should see that I only considered the
+sender, the subject, and the body. Date/time is also irrelevant, as you are not necessarily more likely
+to receive spam on any specific day. Though you could argue months like December or June may see more
+ads from department stores and sports + outdoors. Nonetheless, my model worked out fine enough without
+it. 
